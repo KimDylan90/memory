@@ -1,6 +1,12 @@
 // scripts.js
-const cards = document.querySelectorAll('.memory-card');
+const cards = document.querySelectorAll('.memory-card'),
+/* moves: document.querySelector('.moves'),
+timer: document.querySelector('.timer'),
+start: document.querySelector('button'),
 
+}
+
+*/
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;

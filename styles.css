@@ -33,6 +33,18 @@
     transform: scale(0.97);
     transition: transform .2s;
   }
+/*
+  button {
+    background: #282A3A;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 0;
+    cursor: pointer;
+    font-family: Fredoka;
+    font-size: 18pt;
+}
+*/
   .front-face,
   .back-face {
     width: 100%;
