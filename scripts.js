@@ -1,12 +1,22 @@
 // scripts.js
-const cards = document.querySelectorAll('.memory-card'),
-/* moves: document.querySelector('.moves'),
-timer: document.querySelector('.timer'),
-start: document.querySelector('button'),
-
+const cards = document.querySelectorAll('.memory-card')
+const selectors = {
+  boardContainer: document.querySelector('.board-container'),
+  board: document.querySelector('.board'),
+  moves: document.querySelector('.moves'),
+  timer: document.querySelector('.timer'),
+  start: document.querySelector('button'),
+  win: document.querySelector('.win')
 }
 
-*/
+const state = {
+  gameStarted: false,
+  flippedCards: 0,
+  totalFlips: 0,
+  totalTime: 0,
+  loop: null
+}
+
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
@@ -65,3 +75,32 @@ function resetBoard() {
 
 
 cards.forEach(card => card.addEventListener('click', flipCard));
+
+
+const attachEventListeners = () => {
+  document.addEventListener('click', event => {
+      const eventTarget = event.target
+      const eventParent = eventTarget.parentElement
+
+      if (eventTarget.className.includes('card') && !eventParent.className.includes('flipped')) {
+          flipCard(eventParent)
+      } else if (eventTarget.nodeName === 'BUTTON' && !eventTarget.className.includes('disabled')) {
+          startGame()
+      }
+  })
+}
+
+generateGame()
+attachEventListeners()
+
+const startGame = () => {
+  state.gameStarted = true
+  selectors.start.classList.add('disabled')
+
+  state.loop = setInterval(() => {
+      state.totalTime++
+
+      selectors.moves.innerText = `${state.totalFlips} moves`
+      selectors.timer.innerText = `time: ${state.totalTime} sec`
+  }, 1000)
+}
